@@ -1,43 +1,30 @@
-<html lang="ja">
-  <title>プライバシーポリシー |八王子祭アプリ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html {
-      width: 100%;
-      height: 100%;
-    }
-    body {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      background-color: #222C29;
-      text-align: center;
-      color: #fff;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
-</head>
-<body>
-<h1>
-  学園祭アプリ<br>
-  プライバシーポリシー
-</h1>
-
-  
-  <p>
-   アプリケーションの通知を行うために、プッシュ通知IDを収集します。
-    これらのデータは学園祭期間が終了次第削除されます。
-    直ちに削除する必要がある場合、下記のメールにご連絡ください。
-  </p>
-  <p>
-  
-  このアプリケーションはその他のユーザーの個人情報やその他使用に伴い発生する情報を一歳収集しません。<br>
-  お問合せ: KogCoder[at]gmail.com
-</p>
 
 
-</body></html>
-</html>
+URL非表示のページを開くテスト<br>
+
+<br>
+<button id='btn'>開く</button>
+
+<script>
+
+document.getElementById('btn').onclick = () => {
+  fetch('/supersecret.html', {method: 'GET'})
+    .then(data => data.text())
+    .then(res => {
+        let w = window.open('','_blank', 'popup=1');
+        w.document.body.innerHTML = res
+
+        const resetHandler = () => {
+          w.addEventListener('beforeunload', () => {
+            setTimeout(() => {
+              w.document.body.innerHTML = res;
+              resetHandler();
+            }, 100);
+          });
+        }
+
+        resetHandler();
+    })
+}
+
+</script>
